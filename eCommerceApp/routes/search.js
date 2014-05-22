@@ -12,7 +12,7 @@ exports.show = function(req, res){
 
 var searchtext = req.params.text;
 
-var prodCatResGlobal;
+var prodCatResGlobal =[];
 var subCatResGlobal;
 var distinctCatSubCatGlobal;
 var allProdGlobal = [];
@@ -52,17 +52,37 @@ var MongoClient = require('mongodb').MongoClient
                // db.close();
             });
 
+                
 
-                collection.runCommand("text" , {search : searchtext},function(err, allProdCursor) {
+//                collection.runCommand("text" , {search : searchtext},function(err, allProdCursor) {
 
-                  allProdCursor.each(function(error,prod){
-                      "use strict"
-                      if(err) throw err;
-                      if(prod==null){
-                          return;
-                      }
-                        console.log(prod);
-                        allProdGlobal.push(prod);
+                  db.command({text:"catalouge" , search: searchtext },function(err, allProdCursor) {  
+
+
+
+                   // allProdCursor.results.toArray().each(function(error,prod){
+                   //    "use strict"
+                   //    if(err) throw err;
+                   //    if(prod==null){
+                   //        return;
+                   //    }
+                   //      console.log(prod);
+                   //      allProdGlobal.push(prod.obj);
+                   // });
+
+                  for (var result in allProdCursor.results)
+                    {
+                      //console.log(res);
+                      
+                          allProdGlobal.push(allProdCursor.results[result].obj);
+                      
+                    }
+
+                     console.log(allProdGlobal);
+
+                      res.render('search', { title: 'Arun Malik' , category : prodCatResGlobal, subCategory : subCatResGlobal , distinctCatSubCat : distinctCatSubCatGlobal, allProducts: allProdGlobal });
+
+
                    });
 
              
@@ -74,7 +94,7 @@ var MongoClient = require('mongodb').MongoClient
 
               //  allProdGlobal = allProdCursor;
                // db.close();
-            });
+            //});
 
         //db.close();
            
@@ -82,6 +102,5 @@ var MongoClient = require('mongodb').MongoClient
     //db.close();
 }); 
 
-  res.render('index', { title: 'Arun Malik' , category : prodCatResGlobal, subCategory : subCatResGlobal , distinctCatSubCat : distinctCatSubCatGlobal, allProducts: allProdGlobal });
-};
+ };
 

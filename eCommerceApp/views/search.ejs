@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+js<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>CMPE 226</title>
+        <title><%= title%></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -20,11 +20,7 @@
         
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        
+    
 
 		<div class="onofffade"></div>	
 
@@ -54,9 +50,8 @@
 		                    </a>
 		                    <div class="navbar-collapse collapse">
 		                        <ul class="navbar-nav">
-		                            <li class="active"><a href="#"><i class="icons col1-text">&#8962;</i> Home</a></li>
-		                            	
-
+		                            <li class="active"><a href="index.html"><i class="icons col1-text">&#8962;</i> Home</a></li>
+		                            
 		                            <% for(var i=0; i<category.length; i++) {%>
 		                            	 
 		                            	 <li  class="dropdown" >
@@ -138,7 +133,10 @@
 									</div>
 								</li>
 
+
+
 								<% 
+
 
 								for (var i = 0; i < allProducts.length; i++) {
 									var prod = allProducts[i];
@@ -190,6 +188,8 @@
 
        	</div><!-- /container -->
         
+        
+
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="../js/vendor/bootstrap.min.js"></script>        

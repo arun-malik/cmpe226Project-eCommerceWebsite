@@ -26,19 +26,19 @@
 
         <script>
 
-        	function SearchDB()
-				{
-					//alert("Welcome!");
-					var text = $("#searchTextBox").val();
-					alert(text);
-					//$.getJSON("/search/"+text);
+    //     	function SearchDB()
+				// {
+				// 	//alert("Welcome!");
+				// 	var text = $("#searchTextBox").val();
+				// 	alert(text);
+				// 	//$.getJSON("/search/"+text);
 
-					$.ajax({
-					    url: 'http://localhost:3000/search'+text,
-					    type: 'GET',
-					    success: function() { alert('PUT completed'); }
-					});
-				}
+				// 	$.ajax({
+				// 	    url: '/search'+text,
+				// 	    type: 'GET',
+				// 	    success: function() {  };
+				// 	});
+				// }
         </script>
 
 		<div class="onofffade"></div>	
@@ -56,13 +56,7 @@
 			    		</a>
 			    	</div>
 			    	<div class="info col-md-4">
-			    		
-			    		
-				    	<form class="search" onsubmit="SearchDB()">
-				    		<input class="col1h" type="submit" value="&#128269;">
-					    	<input id ="searchTextBox" type="text" placeholder="Search">
-					    	<div class="clearfix"></div>
-				    	</form>
+			    	
 			    	</div>
 		    	</div><!--/.top-header-->	
 		    	

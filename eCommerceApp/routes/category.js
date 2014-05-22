@@ -9,7 +9,7 @@ var MongoClient = require('mongodb').MongoClient
 exports.show = function(req, res){
 
 var subcat = req.params.subcat;
-var prodCatResGlobal;
+var prodCatResGlobal=[];
 var subCatResGlobal;
 var distinctCatSubCatGlobal;
 var allProdGlobal = [];
@@ -42,15 +42,8 @@ var allProdGlobal = [];
                // db.close();
             });
 
-              collection.aggregate( [{"$group":{"_id": {productCat : "$productCat", productSubCat : "$productSubCat" }}}] ,function(err, distinctCatSubCat) {
-                console.dir(distinctCatSubCat);
-                distinctCatSubCatGlobal = distinctCatSubCat;
-               // db.close();
-            });
-
-
-            collection.find({'productSubCat': subcat} ,function (err, allProductSubCat) {
-            	 console.log("product found :" + allProductSubCat);
+               collection.find({'productSubCat': subcat} ,function (err, allProductSubCat) {
+               console.log("product found :" + allProductSubCat);
 
 
                 allProductSubCat.each(function(error,prod){
@@ -64,10 +57,21 @@ var allProdGlobal = [];
                    });
 
                //console.dir("category called : " + allProductSubCat);
-            //	 res.render('index', { title: 'Arun Malik' , allProducts:  allProductGlobal, distinctCatSubCat : distinctCatSubCatGlobal, category : prodCatResGlobal, subCategory : subCatResGlobal});
+            //   res.render('index', { title: 'Arun Malik' , allProducts:  allProductGlobal, distinctCatSubCat : distinctCatSubCatGlobal, category : prodCatResGlobal, subCategory : subCatResGlobal});
 
-            res.render('category', { title: 'Arun Malik' , category : prodCatResGlobal, subCategory : subCatResGlobal , distinctCatSubCat : distinctCatSubCatGlobal, allProducts: allProdGlobal });
-  			});  
+            
+        });
+
+              collection.aggregate( [{"$group":{"_id": {productCat : "$productCat", productSubCat : "$productSubCat" }}}] ,function(err, distinctCatSubCat) {
+                console.dir(distinctCatSubCat);
+                distinctCatSubCatGlobal = distinctCatSubCat;
+               // db.close();
+
+               res.render('category', { title: 'Arun Malik' , category : prodCatResGlobal, subCategory : subCatResGlobal , distinctCatSubCat : distinctCatSubCatGlobal, allProducts: allProdGlobal });
+            });
+
+
+             
 
            }         
     });
